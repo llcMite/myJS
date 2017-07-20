@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<script src='myJS.js'></script>
+</head>
+<style>
+	.box{background: #000; width:10px; height:10px;}
+</style>
+<body>
+<div class="box"></div>
+<ul>
+	<li>1</li>
+	<li>2</li>
+	<li>3</li>
+	<li>4</li>
+	<li>5</li>
+</ul>
+<button>q确定</button>
+<script>
+	window.onload=function(){
+       var myApp=new Sapp();
+       var oDiv=myApp.$('.box')
+       myApp.$('button').addEventListener('click',function(){
+       	 myApp.startMove(oDiv,{'width':300});
+       })
+ 
+      
+    }
+    
+</script>
+</body>
+</html>

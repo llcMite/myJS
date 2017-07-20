@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title></title>
+
+</head>
+<body>
+  <ul id="box">
+  	
+  </ul> 
+<script type="text/javascript">
+	var oDiv=document.querySelector('#box');
+	oDiv.onclick=function(ev){
+		var ev=ev || window.event;
+		var target=ev.target || ev.srcElement;
+		if(target.nodeName.toLowerCase()=='li'){
+           console.log(target)
+		}
+	}
+</script>
+</body>
+</html>
