@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<style type="text/css">
+		body {
+			margin: 0; padding: 0; border: 0; width: 100%; height: 100%; overflow: hidden; 
+		}
+		.font {
+			font-family: 'Arial Negreta', 'Arial';
+		    font-weight: 700;
+		    font-style: normal;
+		    color: #333333;
+		    text-align: left;
+		    line-height: normal;
+		}
+	</style>
+</head>
+  
+<body>
+	
+<div id="uploadWindow" class="mini-window" title="送检受理导入" style="width:300px;"   showModal="true" allowResize="true" allowDrag="true" >
+    <div id="uploadform" class="form" >
+    <form id="form2" enctype="multipart/form-data">
+        <table style="width:100%;">
+            <tr>
+                <td style="width:100px;">选择导入Excel</td>
+            </tr>
+            <tr>
+                <td style="width:140px;"><input type=file name="file" id="file"  /></td>
+            </tr>
+            <tr>
+                <td style="text-align:center;padding-top:5px" >
+                    <a class="mini-button"  onclick="uploadFile()">确认</a> 
+                    <a class="mini-button"  onclick="cancelWindow()">取消</a>
+                </td>                
+            </tr>
+        </table>
+        </form>
+    </div>
+</div>
+
+	<script type="text/javascript">
+        //文件上传
+        function uploadFile() {   
+          		if($("#file").val() == ''){
+	            	showMessageBox("请选择文件");
+        		 	return;
+	            } 
+
+	            mini.mask({
+	                el: document.body,
+	                cls: 'mini-mask-loading',
+	                html: '请稍后...'
+	            });
+	            
+	            $("#form2").ajaxSubmit({
+	            	  url:"sampleOrder.do?upload",
+	            	  type:"POST",
+	            	  success:function(data){
+	            		  data = mini.decode(data);
+	            		  if(data.result){
+		                		 showMessageBox(data.msg);
+		                		 close();
+		                	 }else{
+		                		 alert(data.msg);
+		                	 }
+	            	  },
+	            	  error:function(data){
+	            		  showMessageBox(data);
+	            	  }
+	            });
+	            mini.unmask(document.body);
+        }
+	</script>
+</body>
+</html>
